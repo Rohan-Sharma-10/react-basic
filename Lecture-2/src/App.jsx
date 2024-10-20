@@ -1,0 +1,68 @@
+import { useState, useEffect } from 'react' 
+
+function App () {
+  let counterVisible = false;
+
+  return <div>
+    <Counter></Counter>
+    {counterVisible ? <StopWatch></StopWatch> : null}
+  </div>
+}
+
+function Counter () {
+  const [count, setCount] = useState(0)
+  let [counterVisible, setcounterVisible] = useState(true);
+
+  useEffect(function () {
+    setInterval(() => {
+      setcounterVisible(c => !c)
+    }, 5000);
+  }, [])
+
+  console.log("counter");
+  function increaseCount () {
+    setCount(count + 1);
+  }
+
+  function decreaseCount () {
+    setCount(count - 1);
+  }
+
+  function resetCount () {
+    setCount(0);
+  }
+
+  return <div>
+    <h1> {count} </h1>
+    <button onClick={increaseCount}> Increment </button>
+    <button onClick={decreaseCount}> Decrement </button>
+    <button onClick={resetCount}> Reset </button>
+    hi
+    {counterVisible && <StopWatch></StopWatch>}
+  hello
+
+  </div>
+  
+}
+
+function StopWatch () {
+  const [count, setCount] = useState(1)
+
+   // prevents our setInteval from re-endering.
+   useEffect(function() { // Mounting: When a React component is first instantiated.
+    let clock = setInterval(function() {
+      setCount(count => count + 1);
+    }, 1000)
+
+    return () => {
+      console.log("unmount");
+      clearInterval(clock);
+    }
+  }, []); // The empty array ensures the effect runs only once when the component mounts.
+
+  return <div>
+    <h1> {count} </h1>
+  </div>
+}
+
+export default App
