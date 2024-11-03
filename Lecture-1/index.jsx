@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './App.css'
 
-export default function App () {
+export default function App () { 
   // const [state, setState] = useState(initialState); It provides a way to declare state variables and update them within your component
   // state: The current state value.
   // setState: A function to update the state.

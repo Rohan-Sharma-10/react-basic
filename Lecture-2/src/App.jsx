@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react' 
 
 function App () {
-  let counterVisible = false;
-
   return <div>
     <Counter></Counter>
-    {counterVisible ? <StopWatch></StopWatch> : null}
   </div>
 }
 
@@ -66,3 +63,5 @@ function StopWatch () {
 }
 
 export default App
+
+// the code written in useEffect is used at the time of mounting and ignored at the time of re-rendering and the function we return in useEffect is called at the time of unmounting.
